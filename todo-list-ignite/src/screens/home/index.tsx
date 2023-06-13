@@ -20,33 +20,33 @@ export function HomePage() {
         }
     }
 
-    function handleTaskDone(id: string){
-        setTasks((task)=> task.map((task)=>{
-            task.id === id ? (task.isComplete = !task.isComplete): null
+    function handleTaskDone(id: string) {
+        setTasks((task) => task.map((task) => {
+            task.id === id ? (task.isComplete = !task.isComplete) : null
             return task
         }))
     }
-    function handleTaskDelete(id: string){
-        Alert.alert('Excluir tarefa', 'Deseja excluir essa tarefa?',[
+    function handleTaskDelete(id: string) {
+        Alert.alert('Excluir tarefa', 'Deseja excluir essa tarefa?', [
             {
-                text:'Sim',
-                style:'default',
-                onPress:()=> setTasks((tasks) => tasks.filter((task)=> task.id !== id))
+                text: 'Sim',
+                style: 'default',
+                onPress: () => setTasks((tasks) => tasks.filter((task) => task.id !== id))
             },
             {
                 text: 'Não',
-                style:'cancel'
+                style: 'cancel'
             }
         ])
         setTasks((tasks) => tasks.filter((task) => task.id !== id))
 
     }
-const totalTasksCreated = tasks.length
-const totalTasksCompleted = tasks.filter(({isComplete}) => isComplete,).length
+    const totalTasksCreated = tasks.length
+    const totalTasksCompleted = tasks.filter(({ isComplete }) => isComplete,).length
     return (
         <View style={style.containerBody}>
             <Header
-            inputRef= {newTaskInputRef}
+                inputRef={newTaskInputRef}
                 task={newTask}
                 onChangeText={setNewTask}
                 onPress={handleTaskAdd} />
@@ -68,10 +68,10 @@ const totalTasksCompleted = tasks.filter(({isComplete}) => isComplete,).length
                 <FlatList data={tasks}
                     keyExtractor={(tasks) => tasks.id}
                     renderItem={({ item }) => (
-                        <Task key={item.id} 
-                        {...item}
+                        <Task key={item.id}
+                            {...item}
                             onTaskDone={() => handleTaskDone(item.id)}
-                            onTaskDeleted={() => handleTaskDelete(item.id)}/>
+                            onTaskDeleted={() => handleTaskDelete(item.id)} />
                     )}
                     ListEmptyComponent={Empty} />
             </View>

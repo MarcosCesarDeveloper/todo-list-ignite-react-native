@@ -1,5 +1,5 @@
-export type taskDTO={
+export type taskDTO = {
     id: string
-    title:string
-    isComplete:boolean
+    title: string
+    isComplete: boolean
 }
